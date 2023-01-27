@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { Open_Sans, Roboto, Poppins } from "@next/font/google";
-
+import DarkModeContextPage from "./DarkmodeContext";
 
 const poppins = Poppins({
   weight: ["300", "400"],
@@ -14,11 +14,17 @@ const openSans = Open_Sans({
   style: ["normal"],
 });
 export default function App({ Component, pageProps }: AppProps) {
-  <style jsx global>{`
-  :root {
-    --openSans-font: ${openSans.style.fontFamily};
-    --poppins-font: ${poppins.style.fontFamily};
-  }
-`}</style>
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <style jsx global>{`
+        :root {
+          --openSans-font: ${openSans.style.fontFamily};
+          --poppins-font: ${poppins.style.fontFamily};
+        }
+      `}</style>
+      <DarkModeContextPage>
+        <Component {...pageProps} />
+      </DarkModeContextPage>
+    </>
+  );
 }
